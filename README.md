@@ -288,5 +288,62 @@ For issues, feature requests, or technical support:
 
 City Pathology Laboratory is a leading diagnostic center committed to providing accurate, reliable, and timely pathology services to the community.
 
+---
+
+## Deployment
+
+### Option 1: Streamlit Cloud (Recommended) ⭐
+
+**Streamlit Cloud is the official and easiest way to deploy Streamlit apps.**
+
+1. **Push code to GitHub** (Already done!)
+2. **Visit** https://share.streamlit.io/
+3. **Sign in** with your GitHub account
+4. **Click "New app"**
+5. **Select repository**: citypathologylaboratory-svg/city-pathology-promo-video-generator
+6. **Select branch**: main
+7. **Select file**: app.py
+8. **Click "Deploy"**
+
+**App will be live at**: `https://share.streamlit.io/citypathologylaboratory-svg/city-pathology-promo-video-generator`
+
+**Advantages:**
+- ✅ Free hosting with automatic SSL
+- ✅ Auto-deploys on GitHub push
+- ✅ Full FFmpeg & moviepy support
+- ✅ Built for Streamlit apps
+- ✅ Easy secret management
+- ✅ Automatic scaling
+
+### Option 2: Vercel with Docker (Advanced)
+
+For Vercel deployment, create a Dockerfile:
+
+```dockerfile
+FROM python:3.9-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y ffmpeg
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+```
+
+Then deploy:
+```bash
+vercel --prod
+```
+
+### Option 3: Docker Hub / AWS / GCP
+
+Use the Dockerfile above with any container hosting platform.
+
+---
+
 **Website:** www.citypathlab.in
 **Location:** Mehsana, Gujarat, India
